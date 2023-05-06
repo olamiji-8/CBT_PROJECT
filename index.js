@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 /** routes */
-app.use("/", router) /** Making use of api */
+app.use("/api", router) /** Making use of api */
 
 
 app.get("/", (req, res)=>{

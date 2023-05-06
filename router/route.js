@@ -1,5 +1,8 @@
 const {Router} = require("express");
 const router = Router();
 
+router.get("/question", (req,res)=>{
+    res.json("question api get request")
+})
 
-export default router;
+module.exports= router;
