@@ -9,6 +9,10 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
+/** routes */
+app.use("/", router) /** Making use of api */
+
+
 app.get("/", (req, res)=>{
     try{
         res.json("get data");
