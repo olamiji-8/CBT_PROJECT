@@ -1,7 +1,16 @@
+const Question = require("../model/questionSchema");
+const Result = require("../model/resultSchema");
+
+
 /** Get request */
 
 const getQuestion = async (req, res) => {
-    res.json("question api get request");
+    try {
+       const q =await Question.find();
+       res.json(q)
+    } catch (error) {
+       res.json({error}) 
+    }
   };
   
 
