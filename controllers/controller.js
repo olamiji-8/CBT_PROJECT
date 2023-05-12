@@ -16,8 +16,16 @@ const getQuestion = async (req, res) => {
 
     /** Post request */
     const insertQuestion = async(req,res) => {
-        res.json("question api post request");
+       try {
+        await Question.insertMany([{questions:[0], answer:[1]}]);
+          res.json({msg: "Data saved successfully"});
+        }
+        catch (error) {
+        res.json({error})
+        
+       }
       };
+      
 
           /** Delete request */
     const deleteQuestion = async(req,res) => {
