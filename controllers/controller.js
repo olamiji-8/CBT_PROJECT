@@ -1,3 +1,4 @@
+const  {Data, answer} = require("../database/data")
 const Question = require("../model/questionSchema");
 const Result = require("../model/resultSchema");
 
@@ -17,11 +18,15 @@ const getQuestion = async (req, res) => {
     /** Post request */
     const insertQuestion = async(req,res) => {
        try {
-        await Question.insertMany([{questions:[0], answer:[1]}]);
+        await Question.insertMany(Data.map((item, index) => ({
+          questions: item,
+          answer: answer[index]
+        })));
           res.json({msg: "Data saved successfully"});
         }
         catch (error) {
         res.json({error})
+        
         
        }
       };
@@ -29,24 +34,47 @@ const getQuestion = async (req, res) => {
 
           /** Delete request */
     const deleteQuestion = async(req,res) => {
-        res.json("question api delete request");
+      try {
+        await Question.deleteMany();
+        res.json({msg:"Data deleted successfully"});
+        
+      } catch (error) {
+        res.json({error})
+      }
       };
 
           /** Get result */
     const getResult = async(req,res) => {
-        res.json("result api get request");
+        try {
+         const r = await Result.find();
+         res.json(r)
+        } catch (error) {
+          res.json(error)
+        }
       };
 
    
                 /** Update result */
     const updateResult = async(req,res) => {
-        res.json("result api update request");
+       try {
+         const {username, email, result, attempts, createdAt} = req.body;
+         if (!username && !result) throw new Error("Data not provided");
+         Result.create({username, email, result, attempts, createdAt});
+         res.json({msg: "Result saved successfully"});
+       } catch (error) {
+        res.json(error)
+       }
       };
 
 
                 /** Post result */
     const deleteResult = async(req,res) => {
-        res.json("result api delete request");
+        try {
+          await Result.deleteMany();
+          res.json({msg: "Result deleted successfully"});
+        } catch (error) {
+          res.json({error})
+        }
       };
 
 
