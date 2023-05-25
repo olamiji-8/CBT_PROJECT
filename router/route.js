@@ -1,15 +1,19 @@
-const {Router} = require("express");
+import { Router } from "express";
 const router = Router();
 
-/** controller */
-const controller = require("../controllers/controller")
+/** import controllers */
+import * as controller from '../controllers/controller.js';
 
-router.get("/question", controller.getQuestion)
-router.post("/question", controller.insertQuestion)
+/** Questions Routes API */
 
+router.route('/questions')
+        .get(controller.getQuestions) /** GET Request */
+        .post(controller.insertQuestions) /** POST Request */
+        .delete(controller.dropQuestions) /** DELETE Request */
 
-/**You can either use the one at the top or this */
-router.route("/question").get(controller.getQuestion).post(controller.insertQuestion).delete(controller.deleteQuestion);
-router.route("/result").get(controller.getResult).post(controller.updateResult).delete(controller.deleteResult);
+router.route('/result')
+        .get(controller.getResult)
+        .post(controller.storeResult)
+        .delete(controller.dropResult)
 
-module.exports= router;
+export default router;

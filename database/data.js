@@ -1,8 +1,8 @@
-const Data = [
+export default [
     {
         id:1,
         question:"What is the full meaning of www",
-        Option:[
+        options:[
             "word wide web",
             "world wide web",
             "work wide web"
@@ -10,8 +10,8 @@ const Data = [
     },
     {
         id:2,
-        question:"What is the full meaning of html",
-        Option:[
+        questions:"What is the full meaning of html",
+        options:[
             "Hypertext markdown language",
             "Hypertext markup language",
             "Hypertext makeup language"
@@ -19,8 +19,8 @@ const Data = [
     },
     {
         id:3,
-        question:"What is the full meaning of oop",
-        Option:[
+        questions:"What is the full meaning of oop",
+        options:[
             "Object oriented programming",
             "Oriented object programming",
             "Orienteed object programmig"
@@ -28,6 +28,4 @@ const Data = [
     },
 ];
 
- const answer =[1,1,0];
-
- module.exports=   {Data, answer};
+export const answers = [1,1,0];
